@@ -5,10 +5,10 @@ _get_repolink () {
     regex='(https?)://github.com/.+/.+'
     if [[ $UPSTREAM_REPO == "jmthon-ar" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0pNVEhPTi1BUi9KTS1USE9OL2FyY2hpdmUvbWFzdGVyLnppcA=" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1ZFUlNPTi0yMDA1L0FOVEkvYXJjaGl2ZS9tYXN0ZXIuemlw=" | base64 -d
     elif [[ $UPSTREAM_REPO == "jmthon-ar" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0pNVEhPTi1BUi9KTS1USE9OL2FyY2hpdmUvbWFzdGVyLnppcA=" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1ZFUlNPTi0yMDA1L0FOVEkvYXJjaGl2ZS9tYXN0ZXIuemlw=" | base64 -d
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         if [[ $UPSTREAM_REPO_BRANCH ]]
@@ -18,7 +18,7 @@ _get_repolink () {
             echo "${UPSTREAM_REPO}/archive/master.zip"
         fi
     else
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0pNVEhPTi1BUi9KTS1USE9OL2FyY2hpdmUvbWFzdGVyLnppcA=" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1ZFUlNPTi0yMDA1L0FOVEkvYXJjaGl2ZS9tYXN0ZXIuemlw=" | base64 -d
     fi
 }
 
@@ -26,9 +26,9 @@ _get_repolink () {
 _setting_bot () {
     local zippath
     zippath="JmthonBot.zip"
-    echo "  يتم تحميل ملفات سورس جمثون ..."
+    echo "  يتم تحميل ملفات سورس انتيثون ..."
     wget -q $(_get_repolink) -O "$zippath"
-    echo "  فك بيانات السورس ..."
+    echo "  فك بيانات سورس انتيثون ..."
     JMTHONPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
     unzip -qq "$zippath"
     echo "✓"
@@ -36,14 +36,10 @@ _setting_bot () {
     rm -rf "$zippath"
     sleep 5
     cd $JMTHONPATH
-    echo "    بدء بوت جمثون    "
+    echo "    بدء بوت انتيثون    "
     echo "
                        
-╋╋╋╋╋┏┓┏┓
-╋┏┳━━┫┗┫┗┳━┳━┳┓
-╋┣┫┃┃┃┏┫┃┃╋┃┃┃┃
-┏┛┣┻┻┻━┻┻┻━┻┻━┛
-┗━┛
+
     "
 
     python3 ../setup/updater.py ../requirements.txt requirements.txt
